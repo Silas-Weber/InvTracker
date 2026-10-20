@@ -1,0 +1,49 @@
+
+<section class="card flex flex-col items-center w-[80%] mx-auto my-3 ">
+  <h1 class="text-3xl">{{totalValue()}}</h1>
+
+  <p class="text-sm/10 text-profit-color">Seit beginn +232323 (7,31%)</p>
+</section>
+
+
+<section class="card flex justify-center h-100 w-[80%] mx-auto">
+  <p class="">ToDo: Implement your chart</p>
+</section>
+
+
+<section class="card h-100 w-[80%] mx-auto my-3 relative">
+  <!-- Headerbereich -->
+  <div class="flex flex-row justify-between items-center w-[95%] mx-auto">
+  <p class="text-2xl font-semibold">Inventar</p>
+
+  <!-- suche -->
+  <div class="inline-block">
+    <app-searchbar [placeholderText]='"Suchbegriff"'></app-searchbar>
+  </div>
+
+  <button addButton type="button" (click)="toggleDialog()">+</button>
+  </div>
+</section>
+
+@if(addItemDialog()) {
+  <app-add-item-dialog></app-add-item-dialog>
+}
+
+
+
+
+
+
+<!-- [{"market_hash_name":"★ Sport Gloves | Pandora's Box (Battle-Scarred)",
+"version":null,
+"currency":"EUR",
+"suggested_price":1988.71,
+"item_page":"https://skinport.com/item/sport-gloves-pandora-s-box-battle-scarred",
+"market_page":"https://skinport.com/market/gloves/sport-gloves?item=Pandora's%20Box",
+"min_price":1945.46,
+"max_price":3500,
+"mean_price":2369.76,
+"median_price":2200,
+"quantity":5,
+"created_at":1566525280,
+"updated_at":1792386914},{" -->

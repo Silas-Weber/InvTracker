@@ -1,0 +1,10 @@
+{
+  "/v1/items": {
+    "target": "https://api.skinport.com",
+    "secure": true,
+    "changeOrigin": true,
+    "headers": {
+      "Accept-Encoding": "br"
+    }
+  }
+}

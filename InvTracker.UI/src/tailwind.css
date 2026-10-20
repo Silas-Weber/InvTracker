@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  /* vorschläge von standardfarben ignorieren grrr */
+  --color-*: initial;
+  /* Farben */
+  --color-profit-color: #00A25F;
+  --color-loss-color: #A20003;
+  --color-background-white: #FFFFFF;
+
+  --color-background-ofwhite: #F5F7FA;
+
+  --text-title-big: 2rem;
+
+  --color-border-color: #E4E7EA;
+
+  
+
+}
+
+@layer components {
+  .card {
+     @apply bg-background-white py-5 border-2 rounded-lg border-border-color;
+  }
+
+}
+
+@layer header {
+  .effect{
+    @apply relative after:absolute after:content-[''] after:h-0.5 after:left-0 after:-bottom-1 after:w-full after:origin-left after:bg-[#000000] after:transition-transform after:duration-200 after:scale-x-0 hover:after:scale-x-100;
+  }
+}
