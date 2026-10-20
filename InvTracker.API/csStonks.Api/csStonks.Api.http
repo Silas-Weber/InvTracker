@@ -1,0 +1,6 @@
+@csStonks.Api_HostAddress = http://localhost:5106
+
+GET {{csStonks.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

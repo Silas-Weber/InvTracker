@@ -1,0 +1,187 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\services\\skinportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\services\\skinportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\skinportitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\skinportitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|c:\\users\\silasweber\\desktop\\html\\csstonks.api\\csstonks.api\\services\\singlespitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29E88EBA-1213-EBB5-F982-362DCE8D7E24}|csStonks.Api\\csStonks.Api.csproj|solutionrelative:csstonks.api\\services\\singlespitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Program.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Program.cs",
+              "RelativeToolTip": "csStonks.Api\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAuwBwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T06:53:21.004Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "csStonks.Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\appsettings.json",
+              "RelativeToolTip": "csStonks.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-14T08:02:16.079Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SkinportItem.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\SkinportItem.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\SkinportItem.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\SkinportItem.cs",
+              "RelativeToolTip": "csStonks.Api\\SkinportItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T06:21:37.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SingleSpItemService.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Services\\SingleSpItemService.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\Services\\SingleSpItemService.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Services\\SingleSpItemService.cs",
+              "RelativeToolTip": "csStonks.Api\\Services\\SingleSpItemService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowBgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T05:43:30.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "csStonks.Api\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T12:45:52.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Item.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\Item.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Item.cs",
+              "RelativeToolTip": "csStonks.Api\\Item.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T07:10:44.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SkinportService.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Services\\SkinportService.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\Services\\SkinportService.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Services\\SkinportService.cs",
+              "RelativeToolTip": "csStonks.Api\\Services\\SkinportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T06:09:11.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ItemsController.cs",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Controllers\\ItemsController.cs",
+              "RelativeDocumentMoniker": "csStonks.Api\\Controllers\\ItemsController.cs",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Controllers\\ItemsController.cs",
+              "RelativeToolTip": "csStonks.Api\\Controllers\\ItemsController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAIwB0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-14T08:12:11.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "csStonks.Api\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "csStonks.Api\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-14T07:44:22.262Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

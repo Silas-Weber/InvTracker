@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0Kjv9AMvqjc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SilasWeber\\Desktop\\HTML\\csStonks.API\\csStonks.Api\\csStonks.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SilasWeber\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.12\\microsoft.aspnetcore.openapi.10.0.12.nupkg.sha512",
+    "C:\\Users\\SilasWeber\\.nuget\\packages\\microsoft.openapi\\2.12.0\\microsoft.openapi.2.12.0.nupkg.sha512"
+  ],
+  "logs": []
+}
