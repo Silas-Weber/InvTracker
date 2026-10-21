@@ -1,10 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { CsItem } from './types/types';
 
-interface CsItem {
-  marketHashName: string;
-  minPrice: number;
-}
+
 
 @Injectable({
   providedIn: 'root',

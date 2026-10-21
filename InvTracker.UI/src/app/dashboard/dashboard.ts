@@ -23,5 +23,6 @@ export class Dashboard implements OnInit{
 
   toggleDialog() {
     this.addItemDialog.set(!this.addItemDialog())
+    document.body.style.overflow = document.body.style.overflow === 'hidden' ? '' : 'hidden';
   }
   }
