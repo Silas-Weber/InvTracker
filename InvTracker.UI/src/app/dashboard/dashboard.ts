@@ -3,6 +3,7 @@ import { Steam } from '../shared/steam';
 import { Button } from '../shared/ui/button/button';
 import { Searchbar } from '../shared/ui/searchbar/searchbar';
 import { AddItemDialog } from './add-item-dialog/add-item-dialog';
+import { CsItem } from '../shared/types/types';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,16 @@ export class Dashboard implements OnInit{
 
   protected addItemDialog = signal<boolean>(false)
 
+  protected yourInventoryList = signal<CsItem[] >(JSON.parse(localStorage.getItem('yourItems')!))
+
     ngOnInit(): void {
       this.steam.getSkinportItems()
+
+
+    console.log("init",localStorage.getItem('yourItems'))
+  
+
+
       };
 
 
@@ -25,4 +34,7 @@ export class Dashboard implements OnInit{
     this.addItemDialog.set(!this.addItemDialog())
     document.body.style.overflow = document.body.style.overflow === 'hidden' ? '' : 'hidden';
   }
+
+  
+
   }

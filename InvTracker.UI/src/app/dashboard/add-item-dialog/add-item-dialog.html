@@ -1,5 +1,5 @@
 <div class="fixed top-0 z-2 flex  bg-[#0F172A]/40 h-full w-full" 
-(click)="ngOnDestroy()">
+>
 
   <div class="card w-[40%] h-[70%] bg-[#ffffff] m-auto ">
     <h2>Item hinzufügen</h2>
@@ -10,9 +10,10 @@
 
   <!-- ToDo: in shared Komponente umwandeln -->
   <div class='flex justify-between rounded-lg p-1 border-2 border-transparent focus-within:border-[#697482]'>
-    <input #inputEl class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Suche" type="search"
+    <input class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Suche" type="search"
     (focusin)="searchFocused.set(true)"
     (focusout)="searchFocused.set(false)"
+    [(ngModel)]="searchTerm"
     >
     <img  src="/search.svg" class="w-8 h-8 grow-0">
   </div>
@@ -21,12 +22,14 @@
     @if(searchFocused()){
 
     
-    @for(item of testList(); track item.market_hash_name) {
-      <div class="flex items-center w-full h-10 bg-profit-color border-b-2">
+    @for(item of filteredList(); track item.market_hash_name) {
+      <div class="flex items-center w-full h-10 bg-profit-color border-b-2"
+      (mousedown)="$event.preventDefault()"
+      (click)="addItem(item)">
       {{item.market_hash_name}} - {{item.min_price}}
     </div>
     }
     }
   </div>
-
+<p>{{this.searchTerm()}}</p>
 </div>
