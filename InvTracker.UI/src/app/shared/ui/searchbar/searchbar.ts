@@ -1,9 +1,10 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-searchbar',
   imports: [],
   templateUrl: './searchbar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'flex justify-between rounded-lg p-1 border-2 border-transparent focus-within:border-[#697482]'
   }

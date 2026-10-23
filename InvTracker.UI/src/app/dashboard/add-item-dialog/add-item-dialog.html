@@ -1,9 +1,12 @@
-<div class="fixed top-0 z-2 flex  bg-[#0F172A]/40 h-full w-full" 
+<div class="fixed top-0 z-2 flex bg-[#0F172A]/40 h-full w-full" 
 >
 
-  <div class="card w-[40%] h-[70%] bg-[#ffffff] m-auto ">
-    <h2>Item hinzufügen</h2>
+  <div class="card w-[40%] h-[70%] bg-[#ffffff] m-auto">
+    <div class="flex justify-between w-[95%] mx-auto border-b-2 border-border-color">
+      <h2 class="text-3xl font-bold leading-10">Item hinzufügen</h2>
+      <button class="inline-flex items-center justify-center h-12 w-12 text-2xl cursor-pointer hover:bg-profit-color/40 hover:rounded-full">X</button>
 
+    </div>
     <!-- <app-searchbar [placeholderText]="'Itemname'"
     (focusin)="searchFocused.set(true)"
     (focusout)="searchFocused.set(false)"></app-searchbar> -->
@@ -30,6 +33,50 @@
     </div>
     }
     }
+
+    <!-- Resticher abschnitt -->
+    <div class="grid grid-cols-[20%_50%_30%] w-[95%] h-auto mx-auto card">
+
+        <div class="card gap-3">Bild</div>
+
+        <div>
+          <p class="font-semibold bg-item-red">Redline</p>
+          <p class="text-xs">AK-47</p>
+          <p class="">Einsatzerprobt</p>
+        </div>
+
+        <div>
+          <input 
+           class="border-2 border-border-color rounded-lg p-3 focus-within:border-[#697482] outline-none"
+           [class]="addForm.quantity().invalid() && addForm.quantity().touched() && addForm.quantity().dirty() ?
+           'border-item-red' : ''" type="text" inputmode="numeric"
+            type="number" inputmode="numeric" [formField]="addForm.quantity">
+
+
+          <div class="border-2 border-border-color rounded-lg p-3 focus-within:border-[#697482] overflow-hidden"
+          [class]="addForm.price().invalid() && addForm.price().touched() && addForm.price().dirty() ?
+           'border-item-red' : ''" type="text" inputmode="numeric">
+            <input class="outline-none"
+            [formField]="addForm.price">
+            <span>€</span>
+          </div>
+            <!-- @if( && ) {
+              <p>f</p>
+          } -->
+
+
+
+  <!-- <input type="text" inputmode="numeric" placeholder="Preis" class="outline-none" [value]="price()" (input)="isNumeric($event)"> -->
+
+
+
+
+
+      </div>
+      
+    </div>
+
+
   </div>
-<p>{{this.searchTerm()}}</p>
+
 </div>

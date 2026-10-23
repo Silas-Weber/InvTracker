@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Steam } from '../shared/steam';
 import { Button } from '../shared/ui/button/button';
 import { Searchbar } from '../shared/ui/searchbar/searchbar';
@@ -8,6 +8,7 @@ import { CsItem } from '../shared/types/types';
 @Component({
   selector: 'app-dashboard',
   imports: [Button, Searchbar, AddItemDialog],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit{
