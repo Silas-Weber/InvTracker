@@ -24,16 +24,16 @@
   <button addButton type="button" (click)="toggleDialog()">+</button>
   </div>
 
-  @for(item of yourInventoryList(); track item) {
+  <!-- @for(item of yourInventoryList(); track item) {
       <div class="h-7 w-full bg-profit-color">
        {{item.market_hash_name}} {{item.min_price}}  
   </div>
-  }
+  } -->
 
 </section>
 
 @if(addItemDialog()) {
-  <app-add-item-dialog></app-add-item-dialog>
+  <app-add-item-dialog (closeModal)="toggleDialog()"></app-add-item-dialog>
 }
 
 

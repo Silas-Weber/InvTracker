@@ -18,13 +18,13 @@ export class Dashboard implements OnInit{
 
   protected addItemDialog = signal<boolean>(false)
 
-  protected yourInventoryList = signal<CsItem[] >(JSON.parse(localStorage.getItem('yourItems')!))
+  // protected yourInventoryList = signal<CsItem[] >(JSON.parse(localStorage.getItem('yourItems')!))
 
     ngOnInit(): void {
       this.steam.getSkinportItems()
 
 
-    console.log("init",localStorage.getItem('yourItems'))
+
   
 
 

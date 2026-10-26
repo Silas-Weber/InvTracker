@@ -1,8 +1,9 @@
-import { Component, computed, signal, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, computed, signal, ChangeDetectionStrategy, OnInit, output, inject } from '@angular/core';
 import { CsItem } from '../../shared/types/types';
 import {FormsModule} from '@angular/forms';
 import { Numberinput } from '../../shared/ui/numberinput/numberinput';
 import {form, FormField, pattern, required} from '@angular/forms/signals';
+import { Items } from '../../shared/services/items';
 
 interface AddData {
   quantity: string;
@@ -17,7 +18,15 @@ interface AddData {
   templateUrl: './add-item-dialog.html',
 })
 export class AddItemDialog {
+  public itemSerice = inject(Items)
 
+  //ToDo: richtigen datentypen anlegen
+  protected selectedItem = signal<any>(null)
+  protected testList = signal<CsItem[]>(JSON.parse(localStorage.getItem('skinportItems')!))
+
+  ngOnInit() {
+    // console.log(this.itemSerice.itemList())
+  }
 
   public addModel = signal<AddData>({
     quantity: '',
@@ -43,32 +52,54 @@ export class AddItemDialog {
     })
   }) 
 
+    protected filteredList2 = computed(() => {
+    return this.itemSerice.allItemsNames().filter(e => {
+      if(e.includes(this.searchTerm())) {
+        return e;
+      }
+      return
+    })
+  }) 
+
   protected test() {
     console.log("test")
   }
 
-  // items werden dem localstorage hinzugefügt
-protected addItem(item: CsItem) {
-  const storedItems = localStorage.getItem('yourItems');
+  // finden vom itemobjekt
+protected addItem(item: string) {
 
-  if(storedItems) {
-  const items = Array(...JSON.parse(storedItems), item);
-    localStorage.setItem('yourItems', JSON.stringify(items))
-  } else {
-      const items = Array(item)
-
-  localStorage.setItem('yourItems', JSON.stringify(items))
+  const it = this.itemSerice.allItems().find(e => {
+      return e.display_name === item
   }
+
+)
+
+this.selectedItem.set(it)
+
+  // const storedItems = localStorage.getItem('yourItems');
+
+  // if(storedItems) {
+  // const items = Array(...JSON.parse(storedItems), item);
+  //   localStorage.setItem('yourItems', JSON.stringify(items))
+  // } else {
+  //     const items = Array(item)
+
+  // localStorage.setItem('yourItems', JSON.stringify(items))
+  // }
 }
 
 
 
   protected searchFocused = signal(false);
 
-  protected testList = signal<CsItem[]>(JSON.parse(localStorage.getItem('skinportItems')!))
 
 
 
+  public closeModal = output();
+
+  closeDialog() {
+    this.closeModal.emit()
+  }
 
 
 }

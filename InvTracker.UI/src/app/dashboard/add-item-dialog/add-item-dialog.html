@@ -1,10 +1,11 @@
 <div class="fixed top-0 z-2 flex bg-[#0F172A]/40 h-full w-full" 
 >
 
-  <div class="card w-[40%] h-[70%] bg-[#ffffff] m-auto">
-    <div class="flex justify-between w-[95%] mx-auto border-b-2 border-border-color">
+  <div class="card w-[40%] h-[70%] p-4 bg-[#ffffff] m-auto">
+    <div class="flex justify-between  mx-auto border-b-2 border-border-color">
       <h2 class="text-3xl font-bold leading-10">Item hinzufügen</h2>
-      <button class="inline-flex items-center justify-center h-12 w-12 text-2xl cursor-pointer hover:bg-profit-color/40 hover:rounded-full">X</button>
+      <button class="inline-flex items-center justify-center h-12 w-12 text-2xl cursor-pointer hover:bg-profit-color/40 hover:rounded-full"
+      (click)="closeDialog()">X</button>
 
     </div>
     <!-- <app-searchbar [placeholderText]="'Itemname'"
@@ -13,7 +14,7 @@
 
   <!-- ToDo: in shared Komponente umwandeln -->
   <div class='flex justify-between rounded-lg p-1 border-2 border-transparent focus-within:border-[#697482]'>
-    <input class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Suche" type="search"
+    <input class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Item suchen" type="search"
     (focusin)="searchFocused.set(true)"
     (focusout)="searchFocused.set(false)"
     [(ngModel)]="searchTerm"
@@ -25,40 +26,46 @@
     @if(searchFocused()){
 
     
-    @for(item of filteredList(); track item.market_hash_name) {
+    @for(item of filteredList2(); track $index) {
       <div class="flex items-center w-full h-10 bg-profit-color border-b-2"
-      (mousedown)="$event.preventDefault()"
+      /* (mousedown)="$event.preventDefault()" */
       (click)="addItem(item)">
-      {{item.market_hash_name}} - {{item.min_price}}
+      {{item}}
     </div>
     }
     }
 
-    <!-- Resticher abschnitt -->
-    <div class="grid grid-cols-[20%_50%_30%] w-[95%] h-auto mx-auto card">
+    <!-- hinzufügen -->
+     @if(selectedItem()) {
 
-        <div class="card gap-3">Bild</div>
 
-        <div>
-          <p class="font-semibold bg-item-red">Redline</p>
-          <p class="text-xs">AK-47</p>
-          <p class="">Einsatzerprobt</p>
+    <div class="grid grid-cols-[minmax(8rem,30%)_minmax(0,1fr)_8rem] h-auto mx-auto card p-4">
+
+        <div class="card">{{selectedItem().display_name}}</div>
+
+        <div class="pl-5 my-auto">
+          <p class="font-semibold text-2xl">{{selectedItem().display_name}}</p>
+          <p class="text-sm">AK-47</p>
+          <p class="text-[#697482] mt-0.5">Einsatzerprobt</p>
         </div>
 
         <div>
+
+          <div class="mb-3 border-2 border-border-color rounded-lg p-3 focus-within:border-[#697482]"
+          [class]="addForm.quantity().invalid() && addForm.quantity().touched() && addForm.quantity().dirty() ?
+           'border-warning-red' : ''" type="text" inputmode="numeric">
           <input 
-           class="border-2 border-border-color rounded-lg p-3 focus-within:border-[#697482] outline-none"
-           [class]="addForm.quantity().invalid() && addForm.quantity().touched() && addForm.quantity().dirty() ?
-           'border-item-red' : ''" type="text" inputmode="numeric"
-            type="number" inputmode="numeric" [formField]="addForm.quantity">
+           class="w-full outline-none" type="text" inputmode="numeric"
+            type="number" inputmode="numeric" [formField]="addForm.quantity" placeholder="Anzahl">
+                    </div>
 
-
-          <div class="border-2 border-border-color rounded-lg p-3 focus-within:border-[#697482] overflow-hidden"
+          <div class="flex border-2 border-border-color rounded-lg p-3 focus-within:border-[#697482]"
           [class]="addForm.price().invalid() && addForm.price().touched() && addForm.price().dirty() ?
-           'border-item-red' : ''" type="text" inputmode="numeric">
-            <input class="outline-none"
-            [formField]="addForm.price">
+           'border-warning-red' : ''" type="text" inputmode="numeric">
+            <input class="w-full outline-none"
+            [formField]="addForm.price" placeholder="Preis">
             <span>€</span>
+
           </div>
             <!-- @if( && ) {
               <p>f</p>
@@ -75,7 +82,28 @@
       </div>
       
     </div>
+     }
+    <div class="border-b-2 border-border-color my-2"></div>
 
+    <div class="flex justify-between">
+      <div class="font-bold">
+        Gesamtbetrag
+      </div>
+      <div class="text-2xl font-bold">
+        27,80 $
+      </div>
+    </div>
+
+    <div class="border-b-2 border-border-color my-2"></div>
+
+    <div class="flex justify-end gap-3">
+      <button class="inline-flex items-center justify-center p-3 rounded-[5px] border-2 border-border-color bg-background-ofwhite text-2xl cursor-pointer hover:brightness-95">
+        abbrechen
+      </button>
+      <button class="inline-flex items-center justify-center p-3 rounded-[5px] bg-[#69d9ab] text-2xl cursor-pointer hover:brightness-95">
+        hinzufügen
+      </button>
+    </div>
 
   </div>
 
