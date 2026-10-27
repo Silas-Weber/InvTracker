@@ -1,5 +1,6 @@
 import { computed, OnInit, Service, signal } from '@angular/core';
 import programItems from '../program_items.json';
+import { SchemaItem } from '../types/types';
 
 
 interface ItemList {
@@ -25,7 +26,7 @@ public allItemsNames = computed(() =>
   })
 );
 
-public allItems = computed(() =>
+public allItems = computed<SchemaItem[]>(() =>
   Object.values(this.itemList()).flat()
 );
 

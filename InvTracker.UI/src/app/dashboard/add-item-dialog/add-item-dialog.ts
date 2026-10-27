@@ -1,36 +1,44 @@
-import { Component, computed, signal, ChangeDetectionStrategy, OnInit, output, inject } from '@angular/core';
-import { CsItem } from '../../shared/types/types';
+import { Component, computed, signal, ChangeDetectionStrategy, output, inject, Input, Output } from '@angular/core';
+import { Conditions, CsItem, SchemaItem, Usersitem } from '../../shared/types/types';
 import {FormsModule} from '@angular/forms';
-import { Numberinput } from '../../shared/ui/numberinput/numberinput';
-import {form, FormField, pattern, required} from '@angular/forms/signals';
+
+import { form, FormField, pattern, required, submit, FormRoot } from '@angular/forms/signals';
 import { Items } from '../../shared/services/items';
 
-interface AddData {
-  quantity: string;
-  price: string;
-}
 
 
 @Component({
   selector: 'app-add-item-dialog',
-  imports: [FormsModule, FormField, Numberinput],
+  imports: [FormsModule, FormField, FormRoot],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './add-item-dialog.html',
 })
 export class AddItemDialog {
   public itemSerice = inject(Items)
 
-  //ToDo: richtigen datentypen anlegen
-  protected selectedItem = signal<any>(null)
-  protected testList = signal<CsItem[]>(JSON.parse(localStorage.getItem('skinportItems')!))
 
-  ngOnInit() {
-    // console.log(this.itemSerice.itemList())
-  }
+  protected selectedItem = signal<SchemaItem | null>(null)
+  protected selectedItems = signal<Usersitem[]>([])
 
-  public addModel = signal<AddData>({
+  protected totalInvest = computed<any>(() => {
+      const price = +this.addModel().price.replace(',', '.')
+      const quantity = +this.addModel().quantity
+    return (price * quantity).toFixed(2)
+  })
+
+
+  protected searchFocused = signal(true);
+  protected listVisible = signal(false);
+
+
+
+  public addModel = signal({
+    name: '',
     quantity: '',
     price: '',
+    condition: '',
+    stattrak: false,
+    souvenir: false,
   });
 
   public addForm = form(this.addModel, (schemaPath) => {
@@ -39,67 +47,97 @@ export class AddItemDialog {
     pattern(schemaPath.price, /^\d+(?:[.,]\d{1,2})?$/, {message: 'falsches Preisformat!!!'})
     pattern(schemaPath.quantity, /^\d+$/, {message: 'falsches Preisformat!!!'})
 
-  });
+  }, {submission: {
+    action: async (field) => {
+      console.log(field().value())
+        let alleItems = localStorage.getItem('inventory');
+
+  if(alleItems){
+      alleItems = JSON.parse(alleItems);
+  }
+
+  this.selectedItems.update(e => {
+    const value = field().value();
+
+  
+
+    const usersItem: Usersitem = {
+      name: value.name,
+      condition: value.condition as Conditions,
+      stattrak: value.stattrak,
+      souvenir: value.souvenir,
+      quantity: +value.quantity,
+      price: +value.price,
+
+    }
+
+    if(!e) {
+      return [usersItem]
+    }
+    else {
+      if(alleItems === null) {
+      return [...e, usersItem] as Usersitem[]
+      }
+      return [...alleItems, ...e, usersItem] as Usersitem[]
+    }
+  })
+  localStorage.setItem('inventory', JSON.stringify(this.selectedItems()))
+  console.log('addedToInventory')
+    }
+  }
+}
+);
 
   protected searchTerm = signal('')
 
-  protected filteredList = computed(() => {
-    return this.testList().filter(e => {
-      if(e.market_hash_name.toLocaleLowerCase().includes(this.searchTerm())) {
-        return e;
-      }
-      return
-    })
-  }) 
-
-    protected filteredList2 = computed(() => {
+    protected filteredList = computed(() => {
     return this.itemSerice.allItemsNames().filter(e => {
-      if(e.includes(this.searchTerm())) {
+      if(e.toLocaleLowerCase().includes(this.searchTerm().toLocaleLowerCase())) {
         return e;
       }
       return
     })
   }) 
 
-  protected test() {
-    console.log("test")
-  }
+  
 
-  // finden vom itemobjekt
+
+  // finden und Anzeigen vom item im Modal
 protected addItem(item: string) {
+  const searchedItem = this.itemSerice.allItems().find(e => e.display_name === item)
+  this.addModel().name = item
 
-  const it = this.itemSerice.allItems().find(e => {
-      return e.display_name === item
-  }
 
-)
+              console.log(searchedItem)
 
-this.selectedItem.set(it)
-
-  // const storedItems = localStorage.getItem('yourItems');
-
-  // if(storedItems) {
-  // const items = Array(...JSON.parse(storedItems), item);
-  //   localStorage.setItem('yourItems', JSON.stringify(items))
-  // } else {
-  //     const items = Array(item)
-
-  // localStorage.setItem('yourItems', JSON.stringify(items))
-  // }
+this.selectedItem.set(searchedItem!)
+this.listVisible.set(false)
 }
 
 
 
-  protected searchFocused = signal(false);
+onDeleteItem() {
+  this.selectedItem.set(null)
+    console.log(this.addModel())
+
+    console.log(this.addForm())
+    this.addForm().reset({
+      name:'',
+      quantity: '',
+      price: '',
+     condition: 'Factory New',
+      stattrak: false,
+      souvenir: false,
+    })
+}
 
 
-
-
-  public closeModal = output();
+public closeModal = output();
 
   closeDialog() {
-    this.closeModal.emit()
+    this.closeModal.emit();
   }
 
+enabled = false;
 
 }

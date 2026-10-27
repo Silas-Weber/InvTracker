@@ -3,7 +3,7 @@ import { Steam } from '../shared/steam';
 import { Button } from '../shared/ui/button/button';
 import { Searchbar } from '../shared/ui/searchbar/searchbar';
 import { AddItemDialog } from './add-item-dialog/add-item-dialog';
-import { CsItem } from '../shared/types/types';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +18,11 @@ export class Dashboard implements OnInit{
 
   protected addItemDialog = signal<boolean>(false)
 
-  // protected yourInventoryList = signal<CsItem[] >(JSON.parse(localStorage.getItem('yourItems')!))
+  protected yourInventoryList = signal<any[]>(JSON.parse(localStorage.getItem('inventory')!))
 
     ngOnInit(): void {
-      this.steam.getSkinportItems()
-
+      // this.steam.getSkinportItems()
+      console.log(this.yourInventoryList())
 
 
   
