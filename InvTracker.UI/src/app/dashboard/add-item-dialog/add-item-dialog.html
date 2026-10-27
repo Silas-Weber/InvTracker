@@ -2,7 +2,7 @@
 >
 
   <div class="card w-[40%] h-[70%] p-4 bg-[#ffffff] m-auto relative">
-    <div class="flex justify-between mb-2 mx-auto pb-2 border-b-2 border-border-color">
+    <div class="flex justify-between mb-2 mx-auto pb-2 border-b-2 border-border-color ">
       <h2 class="text-3xl font-bold leading-10">Item hinzufügen</h2>
       <button class="inline-flex items-center justify-center h-12 w-12 text-2xl cursor-pointer hover:bg-border-color hover:rounded-full"
       (click)="closeDialog()">X</button>
@@ -21,29 +21,34 @@
     >
     <img  src="/search.svg" class="w-8 h-8 grow-0">
   </div>
+ 
+<div class="relative">
+  <!-- Input / Button -->
 
-    <!-- Erscheint nur, wenn eine suche aktiv und fertig ist -->
-    @if(searchFocused() && listVisible()){
-
-    
-    @for(item of filteredList(); track $index) {
-      <div class="flex items-center w-full h-10 bg-profit-color border-b-2"
-      (mousedown)="$event.preventDefault()"
-      /* (mousedown)="methode($event)" */
-
-      (click)="addItem(item); listVisible.set(false)">
-      {{item}}
+  @if (listVisible()) {
+    <div
+      class="absolute left-0 top-full z-50 mt-1 w-full
+              rounded-md"
+    >
+      @for (item of filteredList().slice(0, 5); track $index) {
+        <div
+          class="flex h-10 w-full items-center p-2 bg-background-white hover:bg-[#F4F6F8]"
+          (mousedown)="$event.preventDefault()"
+          (click)="addItem(item); listVisible.set(false)"
+        >
+          {{ item }}
+        </div>
+      }
     </div>
-    }
-    }
-  
+  }
+</div>
     <form [formRoot]="addForm">
     <!-- hinzufügen -->
      @if(selectedItem()) {
 
 
 
-    <div class="grid grid-cols-[minmax(8rem,30%)_minmax(0,1fr)_8rem] grid-rows-[auto_auto] items-stretch gap-2 h-auto mx-auto card p-4">
+    <div class="grid grid-cols-[minmax(8rem,30%)_minmax(0,1fr)_8rem] grid-rows-[auto_auto] items-stretch gap-2 h-auto mx-auto card p-4 bg-[#F4F6F8]">
 
 
 
@@ -58,13 +63,13 @@
 
 
 
-        <label class="cursor-pointer inline-flex items-center gap-3">
-          stattrack
+        <label class="cursor-pointer inline-flex items-center gap-3 ">
+          stattrack&#8482;
           <input type="checkbox"
             class="sr-only peer"
             [formField]="addForm.stattrak">
            
-          <span class="relative inline-block h-6 w-11 rounded-full bg-border-color peer-checked:bg-profit-color peer-checked:[&>span]:translate-x-5 transition-colors">
+          <span class="relative inline-block h-6 w-11 rounded-full bg-[#B9C1C8] peer-checked:bg-profit-color peer-checked:[&>span]:translate-x-5 transition-colors">
             <span class="absolute left-0.75 top-0.75 size-4.5 rounded-full bg-background-white peer-checked:bg-profit-color transition-transform"></span>
           </span>
 
@@ -72,13 +77,13 @@
 
 
 
-        <label class="cursor-pointer inline-flex items-center gap-3">
+        <label class="cursor-pointer inline-flex items-center gap-3 ml-3">
           <span class="">souvenir</span>
           <input type="checkbox"
             class="sr-only peer"
             [formField]="addForm.souvenir">
            
-          <span class="relative inline-block h-6 w-11 rounded-full bg-border-color peer-checked:bg-profit-color peer-checked:[&>span]:translate-x-5 transition-colors">
+          <span class="relative inline-block h-6 w-11 rounded-full bg-[#B9C1C8] peer-checked:bg-profit-color peer-checked:[&>span]:translate-x-5 transition-colors">
             <span class="absolute left-0.75 top-0.75 size-4.5 rounded-full bg-background-white peer-checked:bg-profit-color transition-transform"></span>
           </span>
 
@@ -90,13 +95,16 @@
           </div>
 
           <div class="flex flex-1 items-center">
-          <select [formField]="addForm.condition" >
-            <option value="Factory New">Factory New</option>
-            <option value="Minimal Wear" >Minimal Wear</option>
-            <option value="Field-Tested">Field-Tested</option>
-            <option value="Well-Worn">Well-Worn</option>
-            <option value="Battle-Scarred">Battle-Scarred</option>
-          </select>
+          <label class="w-full">
+            <select [formField]="addForm.condition" class="border-2 border-border-color p-3 rounded-lg focus-within:border-[#697482] w-full" >
+              <option value="" selected disabled>Zustand auswählen</option>
+              <option value="Factory New">Factory New</option>
+              <option value="Minimal Wear" >Minimal Wear</option>
+              <option value="Field-Tested">Field-Tested</option>
+              <option value="Well-Worn">Well-Worn</option>
+              <option value="Battle-Scarred">Battle-Scarred</option>
+            </select>
+        </label>
           <!-- <p class="text-[#697482] mt-0.5">Einsatzerprobt</p> -->
 </div>
               </div>
@@ -137,7 +145,7 @@
       <!-- Zweite Row -->
           <p>{{selectedItem()?.display_name}}</p>
           <span></span>
-          <p class="text-loss-color" (click)="onDeleteItem()">Löschen</p>
+          <p class="text-loss-color cursor-pointer w-fit" (click)="onDeleteItem()">Löschen</p>
 
     </div>
      }
