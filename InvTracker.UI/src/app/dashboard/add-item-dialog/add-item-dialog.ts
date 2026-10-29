@@ -2,14 +2,22 @@ import { Component, computed, signal, ChangeDetectionStrategy, output, inject, I
 import { Conditions, CsItem, SchemaItem, Usersitem } from '../../shared/types/types';
 import {FormsModule} from '@angular/forms';
 
-import { form, FormField, pattern, required, submit, FormRoot } from '@angular/forms/signals';
+import { form, FormField, pattern, required, submit, FormRoot, applyEach } from '@angular/forms/signals';
 import { Items } from '../../shared/services/items';
+import { Searchbar } from '../../shared/ui/searchbar/searchbar';
 
-
+interface AddItemModel {
+  name: string;
+  quantity: string;
+  price: string;
+  condition: string;
+  stattrak: boolean;
+  souvenir: boolean;
+}
 
 @Component({
   selector: 'app-add-item-dialog',
-  imports: [FormsModule, FormField, FormRoot],
+  imports: [FormsModule, FormField, FormRoot, Searchbar],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './add-item-dialog.html',
 })
@@ -18,67 +26,64 @@ export class AddItemDialog {
 
 
   protected selectedItem = signal<SchemaItem | null>(null)
+  protected itemTiles = signal<SchemaItem[]>([])
   protected selectedItems = signal<Usersitem[]>([])
 
   protected totalInvest = computed<any>(() => {
-      const price = +this.addModel().price.replace(',', '.')
-      const quantity = +this.addModel().quantity
-    return (price * quantity).toFixed(2)
+    return  this.addModel().reduce((a,b) => {
+        return a + Number(b.price.replace(',', '.')) * Number(b.quantity)
+      },0).toFixed(2)
   })
-
 
   protected searchFocused = signal(true);
   protected listVisible = signal(false);
 
 
 
-  public addModel = signal({
-    name: '',
-    quantity: '',
-    price: '',
-    condition: '',
-    stattrak: false,
-    souvenir: false,
-  });
+
+
+  public addModel = signal<AddItemModel[]>([]);
 
   public addForm = form(this.addModel, (schemaPath) => {
-    required(schemaPath.quantity, {message: 'Die Anzahl fehlt'});
-    required(schemaPath.price, {message: 'Der Preis fehlt'});
-    pattern(schemaPath.price, /^\d+(?:[.,]\d{1,2})?$/, {message: 'falsches Preisformat!!!'})
-    pattern(schemaPath.quantity, /^\d+$/, {message: 'falsches Preisformat!!!'})
-
-  }, {submission: {
+    applyEach(schemaPath, (itemPath) => {
+      required(itemPath.quantity, {message: 'Die Anzahl fehlt'});
+      required(itemPath.price, {message: 'Der Preis fehlt'});
+      pattern(itemPath.price, /^\d+(?:[.,]\d{1,2})?$/, {message: 'falsches Preisformat!!!'})
+      pattern(itemPath.quantity, /^\d+$/, {message: 'falsches Preisformat!!!'})
+     }) }, {submission: {
     action: async (field) => {
-      console.log(field().value())
-        let alleItems = localStorage.getItem('inventory');
+
+  let alleItems = localStorage.getItem('inventory');
 
   if(alleItems){
       alleItems = JSON.parse(alleItems);
   }
 
+
   this.selectedItems.update(e => {
     const value = field().value();
 
-  
-
-    const usersItem: Usersitem = {
-      name: value.name,
-      condition: value.condition as Conditions,
-      stattrak: value.stattrak,
-      souvenir: value.souvenir,
-      quantity: +value.quantity,
-      price: +value.price,
-
-    }
-
+    const usersItem = value.map(e => ({
+      name: e.name,
+      condition: e.condition as Conditions,
+      stattrak: e.stattrak,
+      souvenir: e.souvenir,
+      quantity: +e.quantity,
+      price: +e.price,
+    })
+    )
+      console.log("alle Items", alleItems)
+    console.log("e", e)
+    console.log("fieldValue", field().value())
+    console.log("userItem", usersItem)
     if(!e) {
-      return [usersItem]
+      return usersItem
     }
     else {
       if(alleItems === null) {
-      return [...e, usersItem] as Usersitem[]
+      return [...e, ...usersItem] as Usersitem[]
       }
-      return [...alleItems, ...e, usersItem] as Usersitem[]
+      return [...alleItems, ...e, ...usersItem] as Usersitem[]
     }
   })
   localStorage.setItem('inventory', JSON.stringify(this.selectedItems()))
@@ -104,31 +109,37 @@ export class AddItemDialog {
 
   // finden und Anzeigen vom item im Modal
 protected addItem(item: string) {
-  const searchedItem = this.itemSerice.allItems().find(e => e.display_name === item)
-  this.addModel().name = item
 
+  const searchedItem = this.itemSerice.allItems().find(e => e.display_name === item) as SchemaItem
+const newItem = {
+    name: item,
+    quantity: '',
+    price: '',
+    condition: '',
+    stattrak: false,
+    souvenir: false,
+  }
 
-              console.log(searchedItem)
+  this.addModel.update(e => {
+    console.log("alle e", e);
+    console.log("new Item", newItem)
+    return    [...e, newItem]
+  }
+)
+  
 
 this.selectedItem.set(searchedItem!)
+
+
 this.listVisible.set(false)
+
+
 }
 
 
 
-onDeleteItem() {
-  this.selectedItem.set(null)
-    console.log(this.addModel())
-
-    console.log(this.addForm())
-    this.addForm().reset({
-      name:'',
-      quantity: '',
-      price: '',
-     condition: 'Factory New',
-      stattrak: false,
-      souvenir: false,
-    })
+onDeleteItem(index: any) {
+  this.addModel.update(e => e.filter((_, i) => i !== index))
 }
 
 

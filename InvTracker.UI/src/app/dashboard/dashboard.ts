@@ -3,6 +3,8 @@ import { Steam } from '../shared/steam';
 import { Button } from '../shared/ui/button/button';
 import { Searchbar } from '../shared/ui/searchbar/searchbar';
 import { AddItemDialog } from './add-item-dialog/add-item-dialog';
+import { Usersitem } from '../shared/types/types';
+import { loadInventory } from '../shared/services/inventory-storage';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class Dashboard implements OnInit{
 
   protected addItemDialog = signal<boolean>(false)
 
-  protected yourInventoryList = signal<any[]>(JSON.parse(localStorage.getItem('inventory')!))
+  protected yourInventoryList = signal<Usersitem[]>(loadInventory())
 
     ngOnInit(): void {
       // this.steam.getSkinportItems()

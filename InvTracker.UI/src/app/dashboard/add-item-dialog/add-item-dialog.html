@@ -1,166 +1,127 @@
 <div class="fixed top-0 z-2 flex bg-[#0F172A]/40 h-full w-full" 
 >
 
-  <div class="card w-[40%] h-[70%] p-4 bg-[#ffffff] m-auto relative">
-    <div class="flex justify-between mb-2 mx-auto pb-2 border-b-2 border-border-color ">
+  <div class="px-4 pb-4 border-2 rounded-lg border-border-color w-[40%] h-[70%] overflow-scroll bg-[#ffffff] m-auto relative">
+    <div class="sticky top-0 z-20 bg-[#ffffff]">
+    <div class="flex justify-between  pt-4  left-0  mb-2 mx-auto pb-2 border-b-2  border-border-color bg-[#ffffff]">
       <h2 class="text-3xl font-bold leading-10">Item hinzufügen</h2>
       <button class="inline-flex items-center justify-center h-12 w-12 text-2xl cursor-pointer hover:bg-border-color hover:rounded-full"
       (click)="closeDialog()">X</button>
 
-    </div>
-    <!-- <app-searchbar [placeholderText]="'Itemname'"
-    (focusin)="searchFocused.set(true)"
-    (focusout)="searchFocused.set(false)"></app-searchbar> -->
+  
 
-  <!-- ToDo: in shared Komponente umwandeln -->
-  <div class='flex justify-between mb-2 rounded-lg p-1 border-2 border-transparent focus-within:border-[#697482]'>
-    <input class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Item suchen" type="search"
-    (focusin)="searchFocused.set(true); listVisible.set(true)"
-    (focusout)="searchFocused.set(false); listVisible.set(false)"
-    [(ngModel)]="searchTerm"
-    >
-    <img  src="/search.svg" class="w-8 h-8 grow-0">
   </div>
- 
-<div class="relative">
-  <!-- Input / Button -->
+    <app-searchbar [placeholderText]="'Item suchen'" [list]='this.itemSerice.allItemsNames()' (addItem)="addItem($event)"></app-searchbar>
 
-  @if (listVisible()) {
-    <div
-      class="absolute left-0 top-full z-50 mt-1 w-full
-              rounded-md"
-    >
-      @for (item of filteredList().slice(0, 5); track $index) {
-        <div
-          class="flex h-10 w-full items-center p-2 bg-background-white hover:bg-[#F4F6F8]"
-          (mousedown)="$event.preventDefault()"
-          (click)="addItem(item); listVisible.set(false)"
-        >
-          {{ item }}
-        </div>
-      }
-    </div>
-  }
 </div>
     <form [formRoot]="addForm">
-    <!-- hinzufügen -->
-     @if(selectedItem()) {
 
+@for (form of addForm; track form; let i = $index) {
+  <div class="grid grid-cols-[minmax(8rem,30%)_minmax(0,1fr)_8rem] overflow-hidden relative z-1 grid-rows-[auto_auto] items-stretch gap-2 h-auto mx-auto mb-3 card p-4 bg-[#F4F6F8]">
 
+    <div>
+      <div class="card h-full">
+        {{ form.name().value() }}
+      </div>
+    </div>
 
-    <div class="grid grid-cols-[minmax(8rem,30%)_minmax(0,1fr)_8rem] grid-rows-[auto_auto] items-stretch gap-2 h-auto mx-auto card p-4 bg-[#F4F6F8]">
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-1 items-center">
 
-
-
-        <div>
-          <div class="card h-full">{{selectedItem()?.display_name}}</div>
-
-           <!-- <p class="font-semibold">{{selectedItem()?.name}}</p> -->
-                   
-        </div>
-          <div class="flex flex-col gap-3">
-            <div class="flex flex-1 items-center">
-
-
-
-        <label class="cursor-pointer inline-flex items-center gap-3 ">
+        <label class="cursor-pointer inline-flex items-center gap-3">
           stattrack&#8482;
-          <input type="checkbox"
+          <input
+            type="checkbox"
             class="sr-only peer"
-            [formField]="addForm.stattrak">
-           
+            [formField]="form.stattrak">
+
           <span class="relative inline-block h-6 w-11 rounded-full bg-[#B9C1C8] peer-checked:bg-profit-color peer-checked:[&>span]:translate-x-5 transition-colors">
-            <span class="absolute left-0.75 top-0.75 size-4.5 rounded-full bg-background-white peer-checked:bg-profit-color transition-transform"></span>
+            <span class="absolute left-0.75 top-0.75 size-4.5 rounded-full bg-background-white transition-transform"></span>
           </span>
-
         </label>
-
-
 
         <label class="cursor-pointer inline-flex items-center gap-3 ml-3">
-          <span class="">souvenir</span>
-          <input type="checkbox"
+          souvenir
+          <input
+            type="checkbox"
             class="sr-only peer"
-            [formField]="addForm.souvenir">
-           
+            [formField]="form.souvenir">
+
           <span class="relative inline-block h-6 w-11 rounded-full bg-[#B9C1C8] peer-checked:bg-profit-color peer-checked:[&>span]:translate-x-5 transition-colors">
-            <span class="absolute left-0.75 top-0.75 size-4.5 rounded-full bg-background-white peer-checked:bg-profit-color transition-transform"></span>
+            <span class="absolute left-0.75 top-0.75 size-4.5 rounded-full bg-background-white transition-transform"></span>
           </span>
-
         </label>
-
-
-
-
-          </div>
-
-          <div class="flex flex-1 items-center">
-          <label class="w-full">
-            <select [formField]="addForm.condition" class="border-2 border-border-color p-3 rounded-lg focus-within:border-[#697482] w-full" >
-              <option value="" selected disabled>Zustand auswählen</option>
-              <option value="Factory New">Factory New</option>
-              <option value="Minimal Wear" >Minimal Wear</option>
-              <option value="Field-Tested">Field-Tested</option>
-              <option value="Well-Worn">Well-Worn</option>
-              <option value="Battle-Scarred">Battle-Scarred</option>
-            </select>
-        </label>
-          <!-- <p class="text-[#697482] mt-0.5">Einsatzerprobt</p> -->
-</div>
-              </div>
-
-
-        <div class="flex flex-col gap-3">
-
-          <div class=" flex flex-1 items-center border-2 border-border-color p-3 rounded-lg focus-within:border-[#697482]"
-          [class]="addForm.quantity().invalid() && addForm.quantity().touched() && addForm.quantity().dirty() ?
-           'border-warning-red' : ''" type="text" inputmode="numeric">
-          <input 
-           class="w-full outline-none" type="text" inputmode="numeric"
-            type="number" inputmode="numeric" [formField]="addForm.quantity" placeholder="Anzahl">
-                    </div>
-
-          <div class="flex flex-1 items-center border-2 border-border-color p-3 rounded-lg focus-within:border-[#697482]"
-          [class]="addForm.price().invalid() && addForm.price().touched() && addForm.price().dirty() ?
-           'border-warning-red' : ''" type="text" inputmode="numeric">
-            <input class="w-full outline-none"
-            [formField]="addForm.price" placeholder="Preis">
-            <span>€</span>
-
-          </div>
-            <!-- @if( && ) {
-              <p>f</p>
-          } -->
-
-
-
-  <!-- <input type="text" inputmode="numeric" placeholder="Preis" class="outline-none" [value]="price()" (input)="isNumeric($event)"> -->
-
-
-
-
-
 
       </div>
-      <!-- Zweite Row -->
-          <p>{{selectedItem()?.display_name}}</p>
-          <span></span>
-          <p class="text-loss-color cursor-pointer w-fit" (click)="onDeleteItem()">Löschen</p>
 
+      <div class="flex flex-1 items-center">
+        <label class="w-full">
+          <select
+            [formField]="form.condition"
+            class="border-2 border-border-color p-3 rounded-lg bg-[#ffffff] focus-within:border-[#697482] w-full">
+            <option value="" disabled>Zustand auswählen</option>
+            <option value="Factory New">Factory New</option>
+            <option value="Minimal Wear">Minimal Wear</option>
+            <option value="Field-Tested">Field-Tested</option>
+            <option value="Well-Worn">Well-Worn</option>
+            <option value="Battle-Scarred">Battle-Scarred</option>
+          </select>
+        </label>
+      </div>
     </div>
-     }
-<div class="absolute bottom-2 w-[95%]">
+
+    <div class="flex flex-col gap-3">
+      <div
+        class="flex flex-1 items-center border-2 bg-[#ffffff] p-3 rounded-lg focus-within:border-[#697482]"
+        [class.border-warning-red]="form.quantity().invalid() && form.quantity().touched()"
+        [class.border-border-color]="!(form.quantity().invalid() && form.quantity().touched())">
+        <input
+          class="w-full outline-none"
+          type="text"
+          inputmode="numeric"
+          [formField]="form.quantity"
+          placeholder="Anzahl">
+      </div>
+
+      <div
+        class="flex flex-1 items-center border-2 bg-[#ffffff] p-3 rounded-lg focus-within:border-[#697482]"
+        [class.border-warning-red]="form.price().invalid() && form.price().touched()"
+        [class.border-border-color]="!(form.price().invalid() && form.price().touched())">
+        <input
+          class="w-full outline-none"
+          type="text"
+          inputmode="decimal"
+          [formField]="form.price"
+          placeholder="Preis">
+        <span>€</span>
+      </div>
+    </div>
+
+    <p>{{ form.name().value() }}</p>
+    <span></span>
+
+    <button
+      type="button"
+      class="text-loss-color cursor-pointer w-fit"
+      (click)="onDeleteItem(i)">
+      Löschen
+    </button>
+  </div>
+}
+<div class=" w-[95%]">
     <div class="border-b-2 border-border-color my-2"></div>
 
     <div class="flex justify-between">
       <div class="font-bold">
         Gesamtbetrag
       </div>
-      @if(totalInvest() && addForm.quantity().dirty() && addForm.price().dirty()) {
+      <!-- @if(totalInvest() && form.quantity().dirty() && form.price().dirty()) { -->
+      @if(totalInvest()) {
+
 
 
       <div class="text-2xl font-bold">
-      {{ addModel().quantity }} * {{ addModel().price }} = {{totalInvest()}}
+      {{totalInvest()}}
       </div>
       }
     </div>
@@ -170,7 +131,7 @@
 
 
     <div class="flex justify-end gap-3">
-      <button class="inline-flex items-center justify-center p-3 rounded-[5px] border-2 border-border-color bg-background-ofwhite text-2xl cursor-pointer hover:brightness-95">
+      <button type="button" (click)="closeDialog()" class="inline-flex items-center justify-center p-3 rounded-[5px] border-2 border-border-color bg-background-ofwhite text-2xl cursor-pointer hover:brightness-95">
         abbrechen
       </button>
       <button type="submit" [disabled]="addForm().invalid()" class="inline-flex items-center justify-center p-3 rounded-[5px] bg-[#69d9ab] text-2xl cursor-pointer hover:brightness-95">
@@ -179,7 +140,7 @@
     </div>
 
 </div>
-
+   
     </form>
 
 

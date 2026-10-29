@@ -44,6 +44,6 @@ export interface Usersitem {
   condition: 'Factory New' | 'Minimal Wear' | 'Field-Tested' | 'Well-Worn' | 'Battle-Scarred'
   stattrak: boolean,
   souvenir: boolean
-  quantity: number,
-  price: number
+  quantity: number | string,
+  price: number | string
 }

@@ -1,6 +1,39 @@
-<input class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Suche" type="search">
-<img  src="/search.svg" class="w-8 h-8 grow-0">
+<!-- <input class="outline-none grow text-[#697482] text-sm focus:text-[#000000]"  placeholder="Suche" type="search">
+<img  src="/search.svg" class="w-8 h-8 grow-0"> -->
 
+
+  <div class='flex justify-between mb-2 rounded-lg p-1 border-2 border-transparent focus-within:border-[#697482] bg-[#ffffff]'>
+    <input class="outline-none grow text-[#697482] text-sm focus:text-[#000000] bg-[#ffffff]"  placeholder="Item suchen" type="search"
+    (focusin)="searchFocused.set(true); listVisible.set(true)"
+    (focusout)="searchFocused.set(false); listVisible.set(false)"
+    [(ngModel)]="searchTerm"
+    >
+    <img  src="/search.svg" class="w-8 h-8 grow-0">
+  </div>
+
+  <div class="relative">
+  <!-- Input / Button -->
+
+  @if (listVisible()) {
+    <div
+      class="absolute left-0 top-full z-50 mt-1 w-full
+              rounded-md"
+    >
+      @for (item of filteredList().slice(0, 5); track $index) {
+        <div
+          class="flex h-10 w-full justify-between p-2 bg-background-white hover:bg-[#F4F6F8]"
+          (mousedown)="$event.preventDefault()"
+        >
+ 
+
+          {{ item }}
+                       <button class="h-auto w-auto px-2 rounded-[5px] bg-[#69d9ab] cursor-pointer hover:brightness-95" (click)="onItemAdd(item); listVisible.set(false)">+</button>
+        </div>
+  
+      }
+    </div>
+  }
+</div>
 
 
 <!-- @if(showResults()) {

@@ -18,7 +18,7 @@
 
   <!-- suche -->
   <div class="inline-block">
-    <app-searchbar [placeholderText]='"Suchbegriff"'></app-searchbar>
+    <!-- <app-searchbar [placeholderText]='"Suchbegriff"'></app-searchbar> -->
   </div>
 
   <button addButton type="button" (click)="toggleDialog()">+</button>
@@ -33,7 +33,7 @@
 </section>
 
 @if(addItemDialog()) {
-  <app-add-item-dialog (closeModal)="toggleDialog()"></app-add-item-dialog>
+  <app-add-item-dialog (inventoryChanged)="yourInventoryList.set($event)" (closeModal)="toggleDialog()"></app-add-item-dialog>
 }
 
 

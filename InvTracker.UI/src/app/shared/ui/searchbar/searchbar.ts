@@ -1,16 +1,45 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy, signal, computed, output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Button } from '../button/button';
 
 @Component({
   selector: 'app-searchbar',
-  imports: [],
+  imports: [FormsModule, Button],
   templateUrl: './searchbar.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   host: {
-    class: 'flex justify-between rounded-lg p-1 border-2 border-transparent focus-within:border-[#697482]'
+    class: 'bg-[#ffffff]'
   }
 })
-export class Searchbar<T> {
+
+//Die komponente soll
+// - Eine Liste mit items entgegennehmen
+// - filtern
+// - max x ergebnisse zeigen
+// - item mit output zurückggeben
+// - erstmal mit liste von strings später dann generisch
+export class Searchbar {
   public placeholderText = input.required()
+
+  public list = input.required<string[]>();
+  public filteredList = computed(() => {
+    return this.list().filter(e => e.toLocaleLowerCase().includes(this.searchTerm().toLocaleLowerCase().trim()) 
+    )
+  })
+
+  // properties für UI zustände
+  protected searchFocused = signal<boolean>(false);
+  protected listVisible = signal<boolean>(false);
+
+  protected searchTerm = signal<string>('')
+
+  public addItem = output<string>()
+
+
+  onItemAdd(item: string) {
+    console.log("add ITEM", item)
+    this.addItem.emit(item)
+  }
 
   // public showResults = input<boolean>(false)
   // public results = input<Iterable <T>>([])
